@@ -1,22 +1,21 @@
 fn animal_habitat(animal: &str) -> &str {
+    // TODO: Fix the compiler error in the statement below.
     let identifier = if animal == "crab" {
-        1
+        1.0
     } else if animal == "gopher" {
-        2
+        2.0
     } else if animal == "snake" {
-        3
+        3.0
     } else {
-        // Any unused identifier.
-        4
+        4.0
     };
 
-    // Instead of such an identifier, you would use an enum in Rust.
-    // But we didn't get into enums yet.
-    if identifier == 1 {
+    // Don't change the expression below!
+    if identifier == 1.0 {
         "Beach"
-    } else if identifier == 2 {
+    } else if identifier == 2.0 {
         "Burrow"
-    } else if identifier == 3 {
+    } else if identifier == 3.0 {
         "Desert"
     } else {
         "Unknown"
@@ -27,6 +26,7 @@ fn main() {
     // You can optionally experiment here.
 }
 
+// Don't change the tests!
 #[cfg(test)]
 mod tests {
     use super::*;
