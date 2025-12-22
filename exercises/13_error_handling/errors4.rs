@@ -1,5 +1,3 @@
-use std::cmp::Ordering;
-
 #[derive(PartialEq, Debug)]
 enum CreationError {
     Negative,
@@ -11,11 +9,16 @@ struct PositiveNonzeroInteger(u64);
 
 impl PositiveNonzeroInteger {
     fn new(value: i64) -> Result<Self, CreationError> {
-        match value.cmp(&0) {
-            Ordering::Less => Err(CreationError::Negative),
-            Ordering::Equal => Err(CreationError::Zero),
-            Ordering::Greater => Ok(Self(value as u64)),
+        // TODO: This function shouldn't always return an `Ok`.
+        // Read the tests below to clarify what should be returned.
+        // Ok(Self(value as u64))
+        if value > 0 {
+            return Ok(PositiveNonzeroInteger(value as u64));
+        } else if value == 0 {
+            return Err(CreationError::Zero);
         }
+
+        Err(CreationError::Negative)
     }
 }
 

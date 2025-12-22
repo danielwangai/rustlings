@@ -14,22 +14,14 @@
 // There are at least two ways to implement this that are both correct. But one
 // is a lot shorter!
 
-use std::num::ParseIntError;
+use std::{i32, num::ParseIntError};
 
-#[allow(unused_variables, clippy::question_mark)]
 fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let processing_fee = 1;
     let cost_per_item = 5;
 
-    // Added `?` to propagate the error.
-    let qty = item_quantity.parse::<i32>()?;
-    //                                    ^ added
-
-    // Equivalent to this verbose version:
-    let qty = match item_quantity.parse::<i32>() {
-        Ok(v) => v,
-        Err(e) => return Err(e),
-    };
+    // TODO: Handle the error case as described above.
+    let qty = item_quantity.parse::<i32>().map_err(|e| e.into())?;
 
     Ok(qty * cost_per_item + processing_fee)
 }
