@@ -18,8 +18,8 @@ struct OtherStruct;
 impl SomeTrait for OtherStruct {}
 impl OtherTrait for OtherStruct {}
 
-fn some_func(item: impl SomeTrait + OtherTrait) -> bool {
-    //             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// TODO: Fix the compiler error by only changing the signature of this function.
+fn some_func(item: impl OtherTrait + SomeTrait) -> bool {
     item.some_function() && item.other_function()
 }
 
